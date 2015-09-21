@@ -9,6 +9,11 @@ JPetStore 6 is a full web application built on top of MyBatis 3, Spring 3 and St
 
 See: http://www.mybatis.org/spring/sample.html
 
+## Tomcat7 JNDI配置
+例子用JNDI配置Mysql5数据源实现读写分离
+- server.xml配置参考tomcat7_server.xml
+- context.xml配置参考tomcat7_context.xml
+
 ## Running with Tomcat 7
 Running JPetStore sample under Tomcat 7 (using maven).
 - Clone this repository
