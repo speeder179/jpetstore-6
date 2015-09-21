@@ -23,17 +23,17 @@
 
   <select id="getLineItemsByOrderId" resultType="LineItem">
     SELECT
-      ORDERID,
-      LINENUM AS lineNumber,
-      ITEMID,
-      QUANTITY,
-      UNITPRICE
-    FROM LINEITEM
-    WHERE ORDERID = #{orderId}
+      orderid,
+      linenum AS lineNumber,
+      itemid,
+      quantity,
+      unitprice
+    FROM lineitem
+    WHERE orderid = #{orderId}
   </select>
 
   <insert id="insertLineItem">
-    INSERT INTO LINEITEM (ORDERID, LINENUM, ITEMID, QUANTITY, UNITPRICE)
+    INSERT INTO lineitem (orderid, linenum, itemid, quantity, unitprice)
     VALUES (#{orderId}, #{lineNumber}, #{itemId}, #{quantity}, #{unitPrice})
   </insert>
 

@@ -23,76 +23,76 @@
 
   <select id="getAccountByUsername" resultType="Account">
     SELECT
-          SIGNON.USERNAME,
-          ACCOUNT.EMAIL,
-          ACCOUNT.FIRSTNAME,
-          ACCOUNT.LASTNAME,
-          ACCOUNT.STATUS,
-          ACCOUNT.ADDR1 AS address1,
-          ACCOUNT.ADDR2 AS address2,
-          ACCOUNT.CITY,
-          ACCOUNT.STATE,
-          ACCOUNT.ZIP,
-          ACCOUNT.COUNTRY,
-          ACCOUNT.PHONE,
-          PROFILE.LANGPREF AS languagePreference,
-          PROFILE.FAVCATEGORY AS favouriteCategoryId,
-          PROFILE.MYLISTOPT AS listOption,
-          PROFILE.BANNEROPT AS bannerOption,
-          BANNERDATA.BANNERNAME
-    FROM ACCOUNT, PROFILE, SIGNON, BANNERDATA
-    WHERE ACCOUNT.USERID = #{username}
-      AND SIGNON.USERNAME = ACCOUNT.USERID
-      AND PROFILE.USERID = ACCOUNT.USERID
-      AND PROFILE.FAVCATEGORY = BANNERDATA.FAVCATEGORY
+          signon.username,
+          account.email,
+          account.firstname,
+          account.lastname,
+          account.status,
+          account.addr1 as address1,
+          account.addr2 as address2,
+          account.city,
+          account.state,
+          account.zip,
+          account.country,
+          account.phone,
+          profile.langpref as languagepreference,
+          profile.favcategory as favouritecategoryid,
+          profile.mylistopt as listoption,
+          profile.banneropt as banneroption,
+          bannerdata.bannername
+    FROM account, profile, signon, bannerdata
+    WHERE account.userid = #{username}
+      AND signon.username = account.userid
+      AND profile.userid = account.userid
+      AND profile.favcategory = bannerdata.favcategory
   </select>
 
   <select id="getAccountByUsernameAndPassword" resultType="Account">
     SELECT
-      SIGNON.USERNAME,
-      ACCOUNT.EMAIL,
-      ACCOUNT.FIRSTNAME,
-      ACCOUNT.LASTNAME,
-      ACCOUNT.STATUS,
-      ACCOUNT.ADDR1 AS address1,
-      ACCOUNT.ADDR2 AS address2,
-      ACCOUNT.CITY,
-      ACCOUNT.STATE,
-      ACCOUNT.ZIP,
-      ACCOUNT.COUNTRY,
-      ACCOUNT.PHONE,
-      PROFILE.LANGPREF AS languagePreference,
-      PROFILE.FAVCATEGORY AS favouriteCategoryId,
-      PROFILE.MYLISTOPT AS listOption,
-      PROFILE.BANNEROPT AS bannerOption,
-      BANNERDATA.BANNERNAME
-    FROM ACCOUNT, PROFILE, SIGNON, BANNERDATA
-    WHERE ACCOUNT.USERID = #{param1}
-      AND SIGNON.PASSWORD = #{param2}
-      AND SIGNON.USERNAME = ACCOUNT.USERID
-      AND PROFILE.USERID = ACCOUNT.USERID
-      AND PROFILE.FAVCATEGORY = BANNERDATA.FAVCATEGORY
+      signon.username,
+      account.email,
+      account.firstname,
+      account.lastname,
+      account.status,
+      account.addr1 as address1,
+      account.addr2 as address2,
+      account.city,
+      account.state,
+      account.zip,
+      account.country,
+      account.phone,
+      profile.langpref as languagepreference,
+      profile.favcategory as favouritecategoryid,
+      profile.mylistopt as listoption,
+      profile.banneropt as banneroption,
+      bannerdata.bannername
+    FROM account, profile, signon, bannerdata
+    WHERE account.userid = #{param1}
+      AND signon.password = #{param2}
+      AND signon.username = account.userid
+      AND profile.userid = account.userid
+      AND profile.favcategory = bannerdata.favcategory
   </select>
 
   <update id="updateAccount" parameterType="Account">
-    UPDATE ACCOUNT SET
-      EMAIL = #{email},
-      FIRSTNAME = #{firstName},
-      LASTNAME = #{lastName},
-      STATUS = #{status},
-      ADDR1 = #{address1},
-      ADDR2 = #{address2,jdbcType=VARCHAR},
-      CITY = #{city},
-      STATE = #{state},
-      ZIP = #{zip},
-      COUNTRY = #{country},
-      PHONE = #{phone}
-    WHERE USERID = #{username}
+    UPDATE account SET
+      email = #{email},
+      firstname = #{firstName},
+      lastname = #{lastName},
+      status = #{status},
+      addr1 = #{address1},
+      addr2 = #{address2,jdbcType=VARCHAR},
+      city = #{city},
+      state = #{state},
+      zip = #{zip},
+      country = #{country},
+      phone = #{phone}
+    WHERE userid = #{username}
   </update>
 
   <insert id="insertAccount" parameterType="Account">
-    INSERT INTO ACCOUNT
-      (EMAIL, FIRSTNAME, LASTNAME, STATUS, ADDR1, ADDR2, CITY, STATE, ZIP, COUNTRY, PHONE, USERID)
+    INSERT INTO account
+      (email, firstname, lastname, status, addr1, addr2, city, state, zip, country, phone, userid)
     VALUES
       (#{email}, #{firstName}, #{lastName}, #{status}, #{address1},  #{address2,jdbcType=VARCHAR}, #{city}, #{state}, #{zip}, #{country}, #{phone}, #{username})
   </insert>
@@ -110,10 +110,10 @@
   -->
 
   <update id="updateProfile" parameterType="Account">
-    UPDATE PROFILE SET
-      LANGPREF = #{languagePreference},
-      FAVCATEGORY = #{favouriteCategoryId}
-    WHERE USERID = #{username}
+    UPDATE profile SET
+      langpref = #{languagePreference},
+      favcategory = #{favouriteCategoryId}
+    WHERE userid = #{username}
   </update>
 
   <!--  
@@ -125,17 +125,17 @@
   -->
 
   <insert id="insertProfile" parameterType="Account">
-    INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, USERID)
+    INSERT INTO profile (langpref, favcategory, userid)
     VALUES (#{languagePreference}, #{favouriteCategoryId}, #{username})
   </insert>
 
   <update id="updateSignon" parameterType="Account">
-    UPDATE SIGNON SET PASSWORD = #{password}
+    UPDATE signon SET password = #{password}
     WHERE USERNAME = #{username}
   </update>
 
   <insert id="insertSignon" parameterType="Account">
-    INSERT INTO SIGNON (PASSWORD,USERNAME)
+    INSERT INTO signon (password,username)
     VALUES (#{password}, #{username})
   </insert>
 

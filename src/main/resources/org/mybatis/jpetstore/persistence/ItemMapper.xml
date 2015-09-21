@@ -23,58 +23,58 @@
 
   <select id="getItemListByProduct" resultType="Item">
     SELECT
-      I.ITEMID,
-      LISTPRICE,
-      UNITCOST,
-      SUPPLIER AS supplierId,
-      I.PRODUCTID AS "product.productId",
-      NAME AS "product.name",
-      DESCN AS "product.description",
-      CATEGORY AS "product.categoryId",
-      STATUS,
-      ATTR1 AS attribute1,
-      ATTR2 AS attribute2,
-      ATTR3 AS attribute3,
-      ATTR4 AS attribute4,
-      ATTR5 AS attribute5
-    FROM ITEM I, PRODUCT P
-    WHERE P.PRODUCTID = I.PRODUCTID
-    AND I.PRODUCTID = #{value}
+      i.itemid,
+      listprice,
+      unitcost,
+      supplier AS supplierId,
+      i.productid AS "product.productId",
+      name AS "product.name",
+      descn AS "product.description",
+      category AS "product.categoryId",
+      status,
+      attr1 AS attribute1,
+      attr2 AS attribute2,
+      attr3 AS attribute3,
+      attr4 AS attribute4,
+      attr5 AS attribute5
+    FROM item i, product p
+    WHERE p.productid = i.productid
+    AND i.productid = #{value}
   </select>
 
   <select id="getItem" resultType="Item">
     select
-      I.ITEMID,
-      LISTPRICE,
-      UNITCOST,
-      SUPPLIER AS supplierId,
-      I.PRODUCTID AS "product.productId",
-      NAME AS "product.name",
-      DESCN AS "product.description",
-      CATEGORY AS "product.categoryId",
-      STATUS,
-      ATTR1 AS attribute1,
-      ATTR2 AS attribute2,
-      ATTR3 AS attribute3,
-      ATTR4 AS attribute4,
-      ATTR5 AS attribute5,
-      QTY AS quantity
-    from ITEM I, INVENTORY V, PRODUCT P
-    where P.PRODUCTID = I.PRODUCTID
-      and I.ITEMID = V.ITEMID
-      and I.ITEMID = #{value}
+      i.itemid,
+      listprice,
+      unitcost,
+      supplier AS supplierId,
+      i.productid AS "product.productId",
+      name AS "product.name",
+      descn AS "product.description",
+      category AS "product.categoryId",
+      status,
+      attr1 as attribute1,
+      attr2 as attribute2,
+      attr3 as attribute3,
+      attr4 as attribute4,
+      attr5 as attribute5,
+      qty as quantity
+    from item i, inventory v, product p
+    where p.productid = i.productid
+      and i.itemid = v.itemid
+      and i.itemid = #{value}
   </select>
 
   <select id="getInventoryQuantity" resultType="int">
-    SELECT QTY AS value
-    FROM INVENTORY
-    WHERE ITEMID = #{itemId}
+    SELECT qty AS value
+    FROM inventory
+    WHERE itemid = #{itemId}
   </select>
 
   <update id="updateInventoryQuantity">
-    UPDATE INVENTORY SET
-      QTY = QTY - #{increment}
-    WHERE ITEMID = #{itemId}
+    UPDATE inventory SET
+      qty = qty - #{increment}
+    WHERE itemid = #{itemId}
   </update>
 
 </mapper>

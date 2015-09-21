@@ -69,7 +69,7 @@ public class OrderService {
     }
   }
 
-  @Transactional
+  @Transactional(readOnly = true)
   public Order getOrder(int orderId) {
     Order order = orderMapper.getOrder(orderId);
     order.setLineItems(lineItemMapper.getLineItemsByOrderId(orderId));
@@ -84,6 +84,7 @@ public class OrderService {
     return order;
   }
 
+  @Transactional(readOnly = true)
   public List<Order> getOrdersByUsername(String username) {
     return orderMapper.getOrdersByUsername(username);
   }

@@ -23,14 +23,14 @@
 
   <select id="getSequence" resultType="Sequence">
     SELECT name, nextid
-    FROM SEQUENCE
+    FROM sequence
     WHERE NAME = #{name}
   </select>
 
   <update id="updateSequence">
-    UPDATE SEQUENCE
-    SET NEXTID = #{nextId}
-    WHERE NAME = #{name}
+    UPDATE sequence
+    SET nextid = #{nextId}
+    WHERE name = #{name}
   </update>
 
 </mapper>

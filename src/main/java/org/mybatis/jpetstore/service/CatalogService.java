@@ -26,6 +26,7 @@ import org.mybatis.jpetstore.persistence.ItemMapper;
 import org.mybatis.jpetstore.persistence.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Eduardo Macarron
@@ -53,10 +54,12 @@ public class CatalogService {
     return productMapper.getProduct(productId);
   }
 
+  @Transactional(readOnly = true)
   public List<Product> getProductListByCategory(String categoryId) {
     return productMapper.getProductListByCategory(categoryId);
   }
 
+  @Transactional(readOnly = true)
   public List<Product> searchProductList(String keywords) {
     List<Product> products = new ArrayList<Product>();
     for(String keyword : keywords.split("\\s+")){
@@ -65,14 +68,17 @@ public class CatalogService {
     return products;
   }
 
+  @Transactional(readOnly = true)
   public List<Item> getItemListByProduct(String productId) {
     return itemMapper.getItemListByProduct(productId);
   }
 
+  @Transactional(readOnly = true)
   public Item getItem(String itemId) {
     return itemMapper.getItem(itemId);
   }
 
+  @Transactional(readOnly = true)
   public boolean isItemInStock(String itemId) {
     return itemMapper.getInventoryQuantity(itemId) > 0;
   }
