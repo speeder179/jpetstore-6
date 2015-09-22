@@ -38,7 +38,7 @@
     </jdbc:initialize-database>
 
     <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-        <property name="jndiName" value="java:comp/env/jdbc/test"/>
+        <property name="jndiName" value="java:comp/env/jdbc/test"/><!-- 如果是weblogic的jndi则不需要java:comp/env/，直接写jndi名就好 -->
     </bean>
 
     <!-- transaction manager, use JtaTransactionManager for global tx -->
