@@ -13,6 +13,10 @@ See: http://www.mybatis.org/spring/sample.html
 例子用JNDI配置Mysql5数据源实现读写分离
 - server.xml配置参考tomcat7_server.xml
 - context.xml配置参考tomcat7_context.xml
+- applicationContext.xml的dataSource配置（Tomcat需要加java:comp/env/）
+
+## Weblogic JNDI配置
+- applicationContext.xml的dataSource配置（Weblogic直接写JNDI名字）
 
 ## Running with Tomcat 7
 Running JPetStore sample under Tomcat 7 (using maven).
